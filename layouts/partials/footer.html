@@ -1,74 +1,45 @@
 {{ if .IsPage }}
-{{ if .Prev | or .Next }}
+{{ if .PrevInSection | or .NextInSection }}
 <nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  {{ if .Prev }}
-      <a href="{{ .Prev.Permalink }}" title="{{ .Prev.Title }}">
+    <div class="previous">
+    {{ if .NextInSection }}
+        <a href="{{ .NextInSection.Permalink }}" title="{{ .NextInSection.Title }}">
         <span class="direction">
           Previous
         </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              {{ .Prev.Title }}
+            <div class="page">
+                <div class="button button-previous" role="button" aria-label="Previous">
+                    <i class="icon icon-back"></i>
+                </div>
+                <div class="stretch">
+                    <div class="title">
+                    {{ .NextInSection.Title }}
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </a>
-  {{ end }}
-  </div>
+        </a>
+    {{ end }}
+    </div>
 
-  <div class="next">
-  {{ if .Next }}
-      <a href="{{ .Next.Permalink }}" title="{{ .Next.Title }}">
+    <div class="next">
+    {{ if .PrevInSection }}
+        <a href="{{ .PrevInSection.Permalink }}" title="{{ .PrevInSection.Title }}">
         <span class="direction">
           Next
         </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              {{ .Next.Title }}
+            <div class="page">
+                <div class="stretch">
+                    <div class="title">
+                    {{ .PrevInSection.Title }}
+                    </div>
+                </div>
+                <div class="button button-next" role="button" aria-label="Next">
+                    <i class="icon icon-forward"></i>
+                </div>
             </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  {{ end }}
-  </div>
-</nav>
-{{ end }}
-{{ end }}
-
-{{ if .IsHome }}
-{{ if gt (len .Site.Pages) 2 }}
-<nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  </div>
-
-  {{ $title := (index (.Site.Pages.ByWeight) 1).Title  }}
-  {{ $permalink := (index (.Site.Pages.ByWeight) 1).Permalink }}
-  <div class="next">
-      <a href="{{ $permalink }}" title="{{ $title }}">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              {{ $title }}
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  </div>
+        </a>
+    {{ end }}
+    </div>
 </nav>
 {{ end }}
 {{ end }}
