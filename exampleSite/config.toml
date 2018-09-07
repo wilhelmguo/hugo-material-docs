@@ -1,4 +1,5 @@
-baseurl = "https://example.org/"
+baseurl = "/"
+themesDir = "../.."
 languageCode = "en-us"
 title = "Material Docs"
 theme = "hugo-material-docs"
